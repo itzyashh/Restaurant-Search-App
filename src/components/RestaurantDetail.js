@@ -20,7 +20,8 @@ export default RestaurantDetail
 
 const styles = StyleSheet.create({
     container: {
-        marginLeft: 12
+        marginLeft: 12,
+
     },
     imgStyle: {
         width: 220,

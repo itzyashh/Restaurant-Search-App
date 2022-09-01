@@ -14,7 +14,7 @@ const SearchScreen = () => {
     }
 
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.searchBarStyle}>
                 <SearchBar
                     value={term}
@@ -23,13 +23,14 @@ const SearchScreen = () => {
                 />
                 {error && <Text>{error}</Text>}
             </View>
-            <RestaurantList title={'Cost Effective'} restaurants={filterRestaurantsByPrice('$')} />
-            <RestaurantList title={'Bit Pricier'} restaurants={filterRestaurantsByPrice('$$')} />
-            <RestaurantList title={'Big Spender'} restaurants={filterRestaurantsByPrice('$$$')} />
-            <RestaurantList title={'Lap of Luxury'} restaurants={filterRestaurantsByPrice('$$$$')} />
+            <ScrollView>
 
-
-        </ScrollView>
+                <RestaurantList title={'Cost Effective'} restaurants={filterRestaurantsByPrice('$')} />
+                <RestaurantList title={'Bit Pricier'} restaurants={filterRestaurantsByPrice('$$')} />
+                <RestaurantList title={'Big Spender'} restaurants={filterRestaurantsByPrice('$$$')} />
+                <RestaurantList title={'Lap of Luxury'} restaurants={filterRestaurantsByPrice('$$$$')} />
+            </ScrollView>
+        </View>
     );
 };
 
