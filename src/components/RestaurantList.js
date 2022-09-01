@@ -10,6 +10,7 @@ const RestaurantList = ({ title, restaurants }) => {
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
             <FlatList
+                showsHorizontalScrollIndicator={false}
                 keyExtractor={restaurant => restaurant.id}
                 data={restaurants}
                 horizontal
@@ -26,7 +27,7 @@ export default RestaurantList
 const styles = StyleSheet.create({
     container: {
         marginBottom: 10,
-        backgroundColor: 'rgba(179, 255, 180,.1)'
+        // backgroundColor: 'rgba(179, 255, 180,.1)'
     },
     title: {
         marginBottom: 5,

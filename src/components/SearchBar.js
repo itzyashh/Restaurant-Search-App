@@ -20,7 +20,7 @@ export default SearchBar
 
 const styles = StyleSheet.create({
     searchBarStyle: {
-        backgroundColor: '#bfcde3',
+        backgroundColor: 'rgba(179, 255, 180,.7)',
         marginHorizontal: 15,
         borderRadius: 8,
         height: 50,

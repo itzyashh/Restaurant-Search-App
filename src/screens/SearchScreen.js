@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import yelp from "../../services/yelp";
 import useRestaurants from "../hooks/useRestaurants";
 import RestaurantList from "../components/RestaurantList";
-// import LinearGradient from 'react-native-linear-gradient';
 const SearchScreen = () => {
     const [term, setTerm] = useState('')
     const [searchApi, error, restaurants] = useRestaurants()
@@ -15,7 +14,7 @@ const SearchScreen = () => {
     }
 
     return (
-        <View>
+        <ScrollView style={styles.container}>
             <View style={styles.searchBarStyle}>
                 <SearchBar
                     value={term}
@@ -28,21 +27,19 @@ const SearchScreen = () => {
             <RestaurantList title={'Bit Pricier'} restaurants={filterRestaurantsByPrice('$$')} />
             <RestaurantList title={'Big Spender'} restaurants={filterRestaurantsByPrice('$$$')} />
             <RestaurantList title={'Lap of Luxury'} restaurants={filterRestaurantsByPrice('$$$$')} />
-            {/* <View>
 
-                <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
-                    <Text style={styles.buttonText}>
-                        Sign in with Facebook
-                    </Text>
-                </LinearGradient>
-            </View> */}
-        </View>
+
+        </ScrollView>
     );
 };
 
 export default SearchScreen;
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'rgba(179, 255, 180,.1)',
+        flex: 1
+    },
     searchBarStyle: {
         marginVertical: 15,
     },
