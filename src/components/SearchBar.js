@@ -2,14 +2,14 @@ import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 import { Octicons } from 'react-native-vector-icons'
 
-const SearchBar = ({ term, onTermChange, onSubmit }) => {
+const SearchBar = ({ value, onTermChange, onSubmit }) => {
     return (
         <View style={styles.searchBarStyle}>
             <Octicons name="search" style={styles.iconStyle} />
             <TextInput style={styles.inputStyle}
                 placeholder="Search"
                 onChangeText={onTermChange}
-                value={term}
+                value={value}
                 onEndEditing={onSubmit}
             />
         </View>
