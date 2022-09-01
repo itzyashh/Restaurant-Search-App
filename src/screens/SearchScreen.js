@@ -1,40 +1,33 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import yelp from "../../services/yelp";
+import useRestaurants from "../hooks/useRestaurants";
+import ResultList from "../components/ResultList";
 
 const SearchScreen = () => {
     const [term, setTerm] = useState('')
-    const [restaurants, setRestaurants] = useState([])
-    const [error, setError] = useState('')
-    const searchApi = async () => {
-        try {
-            const res = await yelp.get('/search', {
-                params: {
-                    term: term,
-                    limit: 20,
-                    location: 'san jose'
-                }
-            }
-            )
-            setRestaurants(res.data.businesses)
-            setError('')
-        } catch (err) {
-            setError('Error in server')
-        }
-
+    const [searchApi, error, restaurants] = useRestaurants()
+    const filterRestaurantsByPrice = (price) => {
+        return restaurants.filter(restaurant => {
+            return restaurant.price === price
+        })
     }
+
     return (
         <View>
             <View style={styles.searchBarStyle}>
                 <SearchBar
                     value={term}
                     onTermChange={setTerm}
-                    onSubmit={searchApi}
+                    onSubmit={() => searchApi(term)}
                 />
                 {error && <Text>{error}</Text>}
             </View>
-            <Text>{restaurants.length}</Text>
+            <ResultList title={'Cost Effective'} restaurants={filterRestaurantsByPrice('$')} />
+            <ResultList title={'Bit Pricier'} restaurants={filterRestaurantsByPrice('$$')} />
+            <ResultList title={'Big Spender'} restaurants={filterRestaurantsByPrice('$$$')} />
+            <ResultList title={'Lap of Luxury'} restaurants={filterRestaurantsByPrice('$$$$')} />
         </View>
     );
 };
