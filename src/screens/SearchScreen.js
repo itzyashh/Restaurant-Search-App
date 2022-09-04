@@ -1,7 +1,6 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
-import yelp from "../../services/yelp";
 import useRestaurants from "../hooks/useRestaurants";
 import RestaurantList from "../components/RestaurantList";
 const SearchScreen = () => {

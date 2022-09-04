@@ -1,9 +1,15 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import RestaurantDetail from './RestaurantDetail';
+import { useNavigation } from '@react-navigation/native';
 
 
 const RestaurantList = ({ title, restaurants }) => {
+    const navigation = useNavigation();
+
+    if (!restaurants.length) {
+        return null
+    }
 
     return (
 
@@ -15,7 +21,12 @@ const RestaurantList = ({ title, restaurants }) => {
                 data={restaurants}
                 horizontal
                 renderItem={({ item }) => {
-                    return <RestaurantDetail restaurantData={item} />
+                    return (
+                        <TouchableOpacity onPress={() => navigation.navigate('RestaurantPage', { id: item.id })} >
+
+                            <RestaurantDetail restaurantData={item} />
+                        </TouchableOpacity>
+                    )
                 }}
             />
         </View>
